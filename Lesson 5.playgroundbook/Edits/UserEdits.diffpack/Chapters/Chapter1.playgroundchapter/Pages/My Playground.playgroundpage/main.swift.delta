@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Diff</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>import Foundation
+
+enum dvigStatus{
+    case on 
+    case off
+}
+enum windStatus{
+    case on 
+    case off
+}
+enum spolerStatus{
+    case yes
+    case no
+}
+enum bagStatus{
+    case poln
+    case pust
+}
+protocol Car {
+    var brand: String {get}
+    var god: Int {get}
+    var dvStatus: dvigStatus {get set}
+    var wStatus: windStatus {get set}
+}
+
+extension Car {
+    mutating func cDvStatus(dvStatus:dvigStatus){
+        self.dvStatus = dvStatus
+    }
+    mutating func cwStatus(windStatus:windStatus) {
+        self.wStatus = wStatus
+    }
+    
+}
+class newCar: Car {
+    var brand: String  
+    var god: Int
+    var dvStatus: dvigStatus = .on
+    var wStatus: windStatus = .off
+    init(brand: String, god: Int){
+        self.brand = brand
+        self.god = god
+    }
+}
+
+class sportCar: newCar, CustomStringConvertible{
+    var spolerStatus: spolerStatus = .yes
+    var description: String{
+        return "Марка \(brand), двигатель \(dvStatus), окна \(wStatus),спойлер \(spolerStatus), год выпуска \(god)"
+    }
+}
+class trunkCar: newCar, CustomStringConvertible{
+    var bagStatus: bagStatus = .poln
+    var description: String{
+        return "Марка \(brand),двигатель \(dvStatus), окна \(wStatus),кузов \(bagStatus), год выпуска \(god)"
+    }
+}
+
+var audi = sportCar(brand: "Audi", god: 2009)
+var kamaz = trunkCar(brand: "Kamaz", god: 1997)
+audi.cDvStatus(dvStatus: .off)
+audi.spolerStatus = .yes
+kamaz.cwStatus(windStatus: .on)
+kamaz.bagStatus = .poln
+print(audi.description)
+print(kamaz.description)
+</string>
+			<key>ModifiedRange</key>
+			<string>{0, 1506}</string>
+			<key>OriginalContent</key>
+			<string>
+</string>
+			<key>OriginalRange</key>
+			<string>{0, 1}</string>
+		</dict>
+	</array>
+	<key>File</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/My Playground.playgroundpage/main.swift</string>
+</dict>
+</plist>
